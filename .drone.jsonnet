@@ -81,7 +81,8 @@ local Docker(name, imageSuffix, script, os, failure = "") =
   Build(name, imageSuffix, script, failure, "https://minio.drone.icinga.com") + {
     type: "docker",
     platform: {
-      os: os
+      os: os,
+      arch: "amd64"
     }
   };
 
