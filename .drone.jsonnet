@@ -79,7 +79,11 @@ local K8s(name, imageSuffix, script, failure = "") =
 
 local Docker(name, imageSuffix, script, os, failure = "") =
   Build(name, imageSuffix, script, failure, "https://minio.drone.icinga.com") + {
-    type: "docker"
+    type: "docker",
+    platform: {
+      os: os,
+      arch: "amd64"
+    }
   };
 
 local DebArch(distro, codename, bits, imageSuffix) = [
