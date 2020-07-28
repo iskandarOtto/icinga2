@@ -77,11 +77,11 @@ local K8s(name, imageSuffix, script, failure = "") =
     }
   };
 
-local Docker(name, imageSuffix, script, runner, failure = "") =
+local Docker(name, imageSuffix, script, os, failure = "") =
   Build(name, imageSuffix, script, failure, "https://minio.drone.icinga.com") + {
     type: "docker",
-    node: {
-      name: runner
+    platform: {
+      os: os
     }
   };
 
@@ -100,7 +100,7 @@ local RPM(distro, release) = K8s(
   (if distro == "sles" then "ignore" else "")
 );
 
-local RasPi(codename) = Docker("raspbian " + codename, "raspbian/" + codename, "raspi", "multiarch");
+local RasPi(codename) = Docker("raspbian " + codename, "raspbian/" + codename, "raspi", "linux");
 
   /*
 Deb("debian", "buster") +
