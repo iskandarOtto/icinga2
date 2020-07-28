@@ -1,4 +1,4 @@
-mkdir -p ccache
+sudo mkdir -p ccache
 sudo chown -R "$(whoami)." ccache
 ln -vs "$(pwd)/ccache" ~/.ccache
 ccache -z
